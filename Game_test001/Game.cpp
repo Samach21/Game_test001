@@ -39,7 +39,6 @@ void Game::innitEnemy()
 {
 	this->enemy.setPosition(10.f, 10.f);
 	this->enemy.setSize(Vector2f(100.f, 100.f));
-	this->enemy.setScale(Vector2f(0.5f, 0.5f));
 	this->enemy.setFillColor(Color::Blue);
 	/*this->enemy.setOutlineColor(Color::Yellow);
 	this->enemy.setOutlineThickness(1.f);*/
@@ -76,7 +75,36 @@ void Game::spawnEnemy()
 		static_cast<float>(rand() % static_cast<int>(this->window->getSize().x - this->enemy.getSize().x)),
 		0.f
 	);
-	this->enemy.setFillColor(Color::Magenta);
+
+	int type = rand() % 5;
+	switch (type)
+	{
+	case 0:
+		this->enemy.setFillColor(Color::Magenta);
+		this->enemy.setSize(Vector2f(10.f, 10.f));
+		break;
+	case 1:
+		this->enemy.setFillColor(Color::Yellow);
+		this->enemy.setSize(Vector2f(30.f, 30.f));
+		break;
+	case 2:
+		this->enemy.setFillColor(Color::Cyan);
+		this->enemy.setSize(Vector2f(50.f, 50.f));
+		break;
+	case 3:
+		this->enemy.setFillColor(Color::Blue);
+		this->enemy.setSize(Vector2f(70.f, 70.f));
+		break;
+	case 4:
+		this->enemy.setFillColor(Color::Red);
+		this->enemy.setSize(Vector2f(90.f, 90.f));
+		break;
+	default:
+		this->enemy.setFillColor(Color::Green);
+		this->enemy.setSize(Vector2f(100.f, 100.f));
+		break;
+	}
+	
 	this->enemies.push_back(this->enemy);
 }
 
@@ -149,9 +177,18 @@ void Game::updateEnemies()
 			{
 				if (this->enemies[i].getGlobalBounds().contains(this->mousePosView))
 				{
-					this->points += 1;
-					this->enemies.erase(this->enemies.begin() + i);
+					if (this->enemies[i].getFillColor() == Color::Magenta)
+						this->points += 10;
+					else if (this->enemies[i].getFillColor() == Color::Yellow)
+						this->points += 7;
+					else if (this->enemies[i].getFillColor() == Color::Cyan)
+						this->points += 5;
+					else if (this->enemies[i].getFillColor() == Color::Blue)
+						this->points += 3;
+					else if (this->enemies[i].getFillColor() == Color::Red)
+						this->points += 1;
 					deleted = true;
+					this->enemies.erase(this->enemies.begin() + i);
 				}
 			}
 		}
