@@ -199,14 +199,20 @@ void Game::updateEnemies()
 	}
 }
 
+void Game::updateMap()
+{
+
+}
+
 void Game::update()
 {
 	this->pollEvent();
 	if (this->endGame == false)
 	{
-		this->updateMousePosition();
-		this->updateText();
-		this->updateEnemies();
+		//this->updateMousePosition();
+		//this->updateText();
+		//this->updateEnemies();
+		this->player.update(this->window);
 	}
 
 	if (this->health <= 0)
@@ -232,9 +238,10 @@ void Game::render()
 {
 	this->window->clear();
 	// draw game here
-	this->renderEnemies(*this->window);
+	//this->renderEnemies(*this->window);
 
-	this->renderText(*this->window);
+	//this->renderText(*this->window);
+	this->player.render(this->window);
 
 	this->window->display();
 }

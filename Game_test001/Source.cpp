@@ -1,8 +1,6 @@
 #include<iostream>
 #include "Game.h"
 
-using namespace sf;
-
 int main()
 {
 	srand(static_cast<unsigned>(time(NULL)));

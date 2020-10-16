@@ -5,11 +5,7 @@
 #include<ctime>
 #include<sstream>
 
-#include<SFML/Graphics.hpp>
-#include<SFML/System.hpp>
-#include<SFML/Window.hpp>
-#include<SFML/Audio.hpp>
-#include<SFML/Network.hpp>
+#include "Player.h"
 
 using namespace std;
 using namespace sf;
@@ -30,12 +26,13 @@ private:
 	bool mouseHeld;
 	int health;
 
+	Player player;
+
 	vector<RectangleShape> enemies;
 	Vector2i mousePosWindow;
 	Vector2f mousePosView;
 
 	Font font;
-
 
 	Text uiText;
 
@@ -56,6 +53,7 @@ public:
 	void updateMousePosition();
 	void updateText();
 	void updateEnemies();
+	void updateMap();
 	void update();
 
 	void renderText(RenderTarget& target);
