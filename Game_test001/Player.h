@@ -13,19 +13,31 @@ using namespace sf;
 class Player
 {
 private:
-	RectangleShape shape;
 	Sprite sprite;
 	Texture texture;
+	IntRect currentFrame;
+	Clock aniTime;
 
 	float movementSpeed;
+	float width;
+	float height;
+	float preWidth;
+	float preHeight;
+
+	bool moving;
+	int standNum;
+	int moveNum;
+	bool turnLeft;
 
 	void initVariables();
-	void initShape();
+	void initSprite();
+	void initAnimetion();
 public:
-	Player(float x = 0.f, float y = 0.f);
+	Player();
 	virtual ~Player();
 
 	void updateInput();
+	void updateAnimation();
 	void update(RenderTarget* target);
 	void render(RenderTarget* target);
 };
